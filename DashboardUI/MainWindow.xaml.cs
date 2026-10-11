@@ -11,6 +11,7 @@ namespace DashboardUI;
 public sealed partial class MainWindow : Window
 {
     private readonly SessionRepository _repository;
+    private readonly DispatcherTimer _autoRefreshTimer;
 
     public MainWindow()
     {
@@ -34,6 +35,17 @@ public sealed partial class MainWindow : Window
 
         DatePicker.Date = DateTimeOffset.Now;
         LoadData(DateTime.Today);
+
+        // ── Auto-refresh every 15 seconds if viewing today ──
+        _autoRefreshTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(15) };
+        _autoRefreshTimer.Tick += (_, _) =>
+        {
+            if (DatePicker.Date?.DateTime.Date == DateTime.Today)
+            {
+                LoadData(DateTime.Today);
+            }
+        };
+        _autoRefreshTimer.Start();
     }
 
     private void DatePicker_DateChanged(CalendarDatePicker sender,
