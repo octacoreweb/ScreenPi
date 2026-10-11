@@ -20,3 +20,4 @@ $RECYCLE.BIN/
 ## SQLite local databases & logs
 *.db-wal
 *.db-shm
+
