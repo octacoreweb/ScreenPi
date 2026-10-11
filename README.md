@@ -89,18 +89,33 @@ ScreenPi isn't just an app; it's a blueprint for doing Windows development *righ
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Installation & Execution
 
-### Prerequisites
-*   Windows 10 (Build 17763+) or **Windows 11** (Recommended for Mica material)
-*   [.NET 8.0 SDK](https://dotnet.microsoft.com/download)
-*   Visual Studio 2022 (with "Windows application development" workload)
+### 📥 For End-Users (No Coding Required)
 
-### Installation & Execution
+ScreenPi is packaged as standalone, self-contained Windows executables—no .NET SDK, developer tools, or CLI knowledge required.
+
+1. **Download:** Navigate to the **[Releases](https://github.com/octacoreweb/ScreenPi/releases)** page on GitHub.
+2. **Extract:** Download `ScreenPi-Windows-x64.zip` and extract it to any convenient folder on your PC (e.g. `C:\Tools\ScreenPi` or your personal user directory).
+3. **Run the Background Tracker:**
+   - Double-click **`TrackerService.exe`**.
+   - It runs completely headless in the background, listening for window changes via OS hooks with virtually **0% CPU usage** and writing to local SQLite (`%LOCALAPPDATA%\ScreenPi\screenpi.db`).
+   - *💡 Autostart Tip: Press `Win + R`, type `shell:startup`, and drop a shortcut to `TrackerService.exe` there so tracking starts silently whenever Windows boots.*
+4. **Open the Dashboard:**
+   - Double-click **`DashboardUI.exe`**.
+   - View your total screen time banner, date selector, and macOS-style app usage progress bars in native Windows 11 Mica Fluent UI.
+
+---
+
+### 🛠️ For Developers (Compile from Source)
+
+#### Prerequisites
+* Windows 10 (Build 17763+) or **Windows 11** (Recommended for Mica material)
+* [.NET 8.0 SDK](https://dotnet.microsoft.com/download)
 
 **1. Clone the repository**
 ```powershell
-git clone https://github.com/<YOUR_GITHUB_USERNAME>/ScreenPi.git
+git clone https://github.com/octacoreweb/ScreenPi.git
 cd ScreenPi
 ```
 
@@ -109,16 +124,27 @@ cd ScreenPi
 dotnet build ScreenPi.sln
 ```
 
-**3. Start the Engine (Background Monitor)**
+**3. Run the Unit Tests**
+```powershell
+dotnet test
+```
+
+**4. Start the Engine (Background Monitor)**
 Run this to initialize the `TrackerService`. It runs silently in your terminal and creates the local SQLite database at `%LOCALAPPDATA%\ScreenPi\screenpi.db`.
 ```powershell
 dotnet run --project TrackerService\TrackerService.csproj
 ```
 
-**4. Launch the Dashboard (Frontend)**
+**5. Launch the Dashboard (Frontend)**
 Open a *new* terminal window, ensure the platform flag is set to x64, and launch the UI to view your data in real-time.
 ```powershell
 dotnet run --project DashboardUI\DashboardUI.csproj -p:Platform=x64
+```
+
+**6. Build Standalone Release Package Locally**
+To generate the self-contained release zip archive locally:
+```powershell
+.\build_release.ps1
 ```
 
 ---

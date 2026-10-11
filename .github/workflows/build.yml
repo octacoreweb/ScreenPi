@@ -1,0 +1,61 @@
+name: Build & Package ScreenPi
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-package:
+    name: Build & Package Windows x64
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore ScreenPi.sln
+
+      - name: Run unit tests
+        run: dotnet test ScreenPi.Tests\ScreenPi.Tests.csproj --no-restore --verbosity normal
+
+      - name: Publish TrackerService (Headless Service)
+        run: >
+          dotnet publish TrackerService\TrackerService.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          -p:PublishSingleFile=true
+          -p:PublishTrimmed=true
+          -o .\publish\ScreenPi
+
+      - name: Publish DashboardUI (WinUI 3 App)
+        run: >
+          dotnet publish DashboardUI\DashboardUI.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          -p:WindowsPackageType=None
+          -p:WindowsAppSDKSelfContained=true
+          -p:PublishSingleFile=true
+          -o .\publish\ScreenPi
+
+      - name: Compress Release Package
+        shell: pwsh
+        run: |
+          Compress-Archive -Path ".\publish\ScreenPi\*" -DestinationPath ".\ScreenPi-Windows-x64.zip" -Force
+
+      - name: Upload Release Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ScreenPi-Windows-x64
+          path: ScreenPi-Windows-x64.zip
+          if-no-files-found: error
