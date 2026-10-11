@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedData", "SharedData\SharedData.csproj", "{6D0852E0-42EC-4BD9-B06B-3B6ABAF5992A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackerService", "TrackerService\TrackerService.csproj", "{44BB8B38-4445-41F2-8AE3-230BD3D7B458}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardUI", "DashboardUI\DashboardUI.csproj", "{FD9F1E4E-C625-4A18-9031-8FE509B7FA7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenPi.Tests", "ScreenPi.Tests\ScreenPi.Tests.csproj", "{F674ADFF-EA64-4C62-A271-F37F81B9532E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D0852E0-42EC-4BD9-B06B-3B6ABAF5992A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D0852E0-42EC-4BD9-B06B-3B6ABAF5992A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D0852E0-42EC-4BD9-B06B-3B6ABAF5992A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D0852E0-42EC-4BD9-B06B-3B6ABAF5992A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44BB8B38-4445-41F2-8AE3-230BD3D7B458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44BB8B38-4445-41F2-8AE3-230BD3D7B458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44BB8B38-4445-41F2-8AE3-230BD3D7B458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44BB8B38-4445-41F2-8AE3-230BD3D7B458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD9F1E4E-C625-4A18-9031-8FE509B7FA7B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{FD9F1E4E-C625-4A18-9031-8FE509B7FA7B}.Debug|Any CPU.Build.0 = Debug|x86
+		{FD9F1E4E-C625-4A18-9031-8FE509B7FA7B}.Release|Any CPU.ActiveCfg = Release|x86
+		{FD9F1E4E-C625-4A18-9031-8FE509B7FA7B}.Release|Any CPU.Build.0 = Release|x86
+		{F674ADFF-EA64-4C62-A271-F37F81B9532E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F674ADFF-EA64-4C62-A271-F37F81B9532E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F674ADFF-EA64-4C62-A271-F37F81B9532E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F674ADFF-EA64-4C62-A271-F37F81B9532E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

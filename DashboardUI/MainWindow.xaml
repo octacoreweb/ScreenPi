@@ -1,0 +1,63 @@
+<Window
+    x:Class="DashboardUI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DashboardUI"
+    Title="ScreenPi — Screen Time">
+
+    <Grid x:Name="RootGrid" Padding="0" Background="Transparent">
+        <ScrollViewer>
+            <StackPanel Padding="32,24,32,32" Spacing="20" MaxWidth="720"
+                        HorizontalAlignment="Center">
+
+                <!-- ═══ Header ═══ -->
+                <TextBlock Text="ScreenPi"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           FontWeight="Bold" />
+
+                <!-- ═══ Date picker row ═══ -->
+                <StackPanel Orientation="Horizontal" Spacing="12"
+                            VerticalAlignment="Center">
+                    <CalendarDatePicker x:Name="DatePicker"
+                                        PlaceholderText="Pick a date"
+                                        DateChanged="DatePicker_DateChanged"
+                                        HorizontalAlignment="Left" />
+                    <Button x:Name="RefreshButton" Content="Refresh"
+                            Click="RefreshButton_Click" />
+                </StackPanel>
+
+                <!-- ═══ Total time banner ═══ -->
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        CornerRadius="8" Padding="24,16"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Total Screen Time"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                        <TextBlock x:Name="TotalTimeText" Text="—"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   FontWeight="SemiBold" />
+                    </StackPanel>
+                </Border>
+
+                <!-- ═══ App usage list ═══ -->
+                <TextBlock Text="Apps"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Margin="0,8,0,0" />
+
+                <StackPanel x:Name="AppListPanel" Spacing="8" />
+
+                <!-- Empty state -->
+                <TextBlock x:Name="EmptyStateText"
+                           Text="No screen time data for this date."
+                           Visibility="Collapsed"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           HorizontalAlignment="Center"
+                           Margin="0,32,0,0" />
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
+

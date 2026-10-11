@@ -1,0 +1,22 @@
+## Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Visual Studio & VS Code cache
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## OS Generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+## SQLite local databases & logs
+*.db-wal
+*.db-shm
