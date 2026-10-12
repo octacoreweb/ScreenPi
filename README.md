@@ -215,5 +215,5 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 <br/>
 
 <div align="center">
-  <i>Engineered for Windows. Built with ~~C#~~ LOVE.</i>
+  <i>Engineered for Windows. Built with ~C#~ LOVE.</i>
 </div>
