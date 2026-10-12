@@ -45,10 +45,30 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # 3. Create Distribution Archive
-Write-Host "`n[3/3] Compressing package into $ZipFile..." -ForegroundColor Yellow
+Write-Host "`n[3/4] Compressing package into $ZipFile..." -ForegroundColor Yellow
 Compress-Archive -Path "$PublishDir\*" -DestinationPath $ZipFile -Force
 
+# 4. Build Inno Setup Installer (if ISCC compiler is installed)
+$isccPaths = @(
+    "$env:LOCALAPPDATA\Programs\Inno Setup 6\ISCC.exe",
+    "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe",
+    "$env:ProgramFiles\Inno Setup 6\ISCC.exe"
+)
+$iscc = $isccPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
+
+if ($iscc -and (Test-Path ".\ScreenPi_Setup.iss")) {
+    Write-Host "`n[4/4] Compiling Inno Setup installer..." -ForegroundColor Yellow
+    & $iscc .\ScreenPi_Setup.iss
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host " Installer created: $(Resolve-Path .\ScreenPi_Setup_x64.exe)" -ForegroundColor Green
+    }
+}
+
 Write-Host "`n==========================================" -ForegroundColor Green
-Write-Host " SUCCESS: Release package ready!" -ForegroundColor Green
-Write-Host " Archive: $(Resolve-Path $ZipFile)" -ForegroundColor Green
+Write-Host " SUCCESS: Release artifacts ready!" -ForegroundColor Green
+Write-Host " Archive:   $(Resolve-Path $ZipFile)" -ForegroundColor Green
+if (Test-Path ".\ScreenPi_Setup_x64.exe") {
+    Write-Host " Installer: $(Resolve-Path .\ScreenPi_Setup_x64.exe)" -ForegroundColor Green
+}
 Write-Host "==========================================" -ForegroundColor Green
+

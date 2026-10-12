@@ -16,7 +16,7 @@
 [**Explore Architecture**](#-the-architecture) · [**Read the Docs**](#) · [**Report Bug**](#)
 
 <br/>
-<img src="https://via.placeholder.com/850x480/0d1117/ffffff?text=+[Insert+Screenshot+of+Fluent+Design+Dashboard+With+Mica+Here]+" alt="ScreenPi Dashboard Preview" width="850" style="border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); border: 1px solid #333;"/>
+<img src="DashboardUI/screenshot.jpeg" alt="ScreenPi Dashboard Preview" width="850" style="border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); border: 1px solid #333;"/>
 </div>
 
 ---
@@ -93,17 +93,17 @@ ScreenPi isn't just an app; it's a blueprint for doing Windows development *righ
 
 ### 📥 For End-Users (No Coding Required)
 
-ScreenPi is packaged as standalone, self-contained Windows executables—no .NET SDK, developer tools, or CLI knowledge required.
+ScreenPi is packaged as both a **Windows Installer wizard** and standalone **portable executables**—no .NET SDK, developer tools, or CLI knowledge required.
 
-1. **Download:** Navigate to the **[Releases](https://github.com/octacoreweb/ScreenPi/releases)** page on GitHub.
-2. **Extract:** Download `ScreenPi-Windows-x64.zip` and extract it to any convenient folder on your PC (e.g. `C:\Tools\ScreenPi` or your personal user directory).
-3. **Run the Background Tracker:**
-   - Double-click **`TrackerService.exe`**.
-   - It runs completely headless in the background, listening for window changes via OS hooks with virtually **0% CPU usage** and writing to local SQLite (`%LOCALAPPDATA%\ScreenPi\screenpi.db`).
-   - *💡 Autostart Tip: Press `Win + R`, type `shell:startup`, and drop a shortcut to `TrackerService.exe` there so tracking starts silently whenever Windows boots.*
-4. **Open the Dashboard:**
-   - Double-click **`DashboardUI.exe`**.
-   - View your total screen time banner, date selector, and macOS-style app usage progress bars in native Windows 11 Mica Fluent UI.
+#### Option A: Windows Installer (Recommended)
+1. Navigate to the **[Releases](https://github.com/octacoreweb/ScreenPi/releases)** page on GitHub.
+2. Download and run **`ScreenPi_Setup_x64.exe`**.
+3. The setup wizard installs ScreenPi to `{autopf}\EchoPhase\ScreenPi`, creates Start Menu / Desktop shortcuts for `DashboardUI.exe`, and configures `TrackerService.exe` in the Windows registry to automatically start silently on logon.
+
+#### Option B: Portable ZIP Package
+1. Download `ScreenPi-Windows-x64.zip` from [Releases](https://github.com/octacoreweb/ScreenPi/releases) and extract it anywhere on your PC.
+2. Double-click **`TrackerService.exe`** to start background tracking.
+3. Double-click **`DashboardUI.exe`** to launch the Fluent dashboard.
 
 ---
 
